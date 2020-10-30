@@ -1,0 +1,3 @@
+#!/bin/sh
+cd $AIRPAL_HOME
+exec java -Duser.timezone=$USER_TIMEZONE -cp build/libs/airpal-*-all.jar com.airbnb.airpal.AirpalApplication "$@"
