@@ -7,11 +7,11 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openLooKeng-frontend
+  name: openlookeng-frontend
   namespace: openlookeng
 spec:
   selector:
-    app: openLooKeng-frontend
+    app: openlookeng-frontend
   clusterIP: None
   ports:
   - name: port-0
@@ -20,15 +20,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: openLooKeng-frontend
+  name: openlookeng-frontend
   namespace: openlookeng
   labels:
-    app: openLooKeng-frontend
+    app: openlookeng-frontend
 spec:
   nodeSelector:
     kubernetes.io/arch: amd64
   containers:
-    - name: openLooKeng-frontend
+    - name: openlookeng-frontend
       image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
       imagePullPolicy: Always
       env:
