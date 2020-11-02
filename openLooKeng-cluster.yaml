@@ -12,12 +12,11 @@ metadata:
 spec:
   selector:
     app: openlookeng-frontend
+  type: NodePort
   ports:
-  - name: airpal
-    port: 8081
+  - port: 8081
     targetPort: 8081
-    nodePort: 8081
-    protocol: TCP
+    name: airpal
 ---
 apiVersion: v1
 kind: Pod
@@ -33,6 +32,9 @@ spec:
     - name: openlookeng-frontend
       image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
       imagePullPolicy: Always
+      ports:
+      - containerPort: 8081
+        name: airpal
       env:
         - name: MYSQL_HOST
           value: "114.119.184.236"
