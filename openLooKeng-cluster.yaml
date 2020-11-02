@@ -13,8 +13,11 @@ spec:
   selector:
     app: openlookeng-frontend
   ports:
-  - name: port-0
+  - name: airpal
     port: 8081
+    targetPort: 8081
+    nodePort: 8081
+    protocol: TCP
 ---
 apiVersion: v1
 kind: Pod
