@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openLooKeng
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openLooKeng-frontend
+  namespace: openLooKeng
+spec:
+  selector:
+    app: openLooKeng-frontend
+  clusterIP: None
+  ports:
+  - name: port-0
+    port: 8081
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: openLooKeng-frontend
+  namespace: openLooKeng
+  labels:
+    app: openLooKeng-frontend
+spec:
+  nodeSelector:
+    openlookeng:server
+  containers:
+    - name: openLooKeng-frontend
+      image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
+      imagePullPolicy: Always
+      env:
+        - name: MYSQL_HOST
+          value: "114.119.184.236"
+        - name: PRESTO_SERVER_URI
+          value: "http://119.8.114.27:8090"
+  restartPolicy: Always
