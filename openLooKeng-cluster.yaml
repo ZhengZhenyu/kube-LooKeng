@@ -80,6 +80,8 @@ spec:
       - containerPort: 8081
         name: airpal
       env:
+        - name: USER_TIMEZONE
+          value: "HKT"
         - name: MYSQL_HOST
           value: "mariadb-svc.mariadb.svc.cluster.local"
         - name: MYSQL_USER
