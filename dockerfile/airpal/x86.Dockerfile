@@ -5,17 +5,17 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Set Environment Variables
 ENV AIRPAL_VERSION=0.1 AIRPAL_HOME=/airpal
 
-# Install Prerequisites and Download Airpal
-RUN apt-get update \
-        && apt-get install -y build-essential git gradle python \
-        && git clone https://github.com/airbnb/airpal.git \
-        && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+# Install Prerequisites and Download Airpal
+RUN apt-get update \
+        && apt-get install -y build-essential git gradle python \
+        && git clone https://github.com/airbnb/airpal.git \
+        && rm -rf /var/lib/apt/lists/*
 
 # Build and Configure AirPal
 # according to https://github.com/airbnb/airpal/issues/145, remove -Dairpal.prestoVersion=${PRESTO_VERSION} is the only way to build successfully
