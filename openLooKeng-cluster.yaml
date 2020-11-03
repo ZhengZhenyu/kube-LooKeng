@@ -81,7 +81,13 @@ spec:
         name: airpal
       env:
         - name: MYSQL_HOST
-          value: "mariadb-svc.mariadb.svc.cluster.local:3306"
+          value: "mariadb-svc.mariadb.svc.cluster.local"
+        - name: MYSQL_USER
+          value: "openeulersummit"
+        - name: MYSQL_DB
+          value: "airpal"
+        - name: MYSQL_PASSWD
+          value: "vlTrlL90k"
         - name: PRESTO_SERVER_URI
           value: "http://openlookeng-server.openlookeng.svc.cluster.local:8080"
   restartPolicy: Always
