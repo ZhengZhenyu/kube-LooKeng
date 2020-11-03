@@ -41,7 +41,7 @@ spec:
         - name: INCLUDE_COORDINATOR
           value: "True"
         - name: HTTP_PORT
-          value: 8080
+          value: "8080"
         - name: DISCOVERY_URI
           value: "http://localhost:8080"
         - name: NODE_ENVIRONMENT
