@@ -20,4 +20,6 @@ if [ "$1" = 'airpal' ]; then
 	sed -ri 's|(prestoCoordinator:).*|\1 "'"$PRESTO_SERVER_URI"'"|' "$AIRPAL_HOME/reference.yml"
 fi
 
+airpal db migrate reference.yml
+
 exec "$@"
