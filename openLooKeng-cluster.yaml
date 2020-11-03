@@ -7,44 +7,6 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlookeng-frontend
-  namespace: openlookeng
-spec:
-  selector:
-    app: openlookeng-frontend
-  type: NodePort
-  ports:
-  - port: 8081
-    targetPort: 8081
-    name: airpal
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: openlookeng-frontend
-  namespace: openlookeng
-  labels:
-    app: openlookeng-frontend
-spec:
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  containers:
-    - name: openlookeng-frontend
-      image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
-      imagePullPolicy: Always
-      ports:
-      - containerPort: 8081
-        name: airpal
-      env:
-        - name: MYSQL_HOST
-          value: "114.119.184.236"
-        - name: PRESTO_SERVER_URI
-          value: "http://119.8.114.27:8090"
-  restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
   name: openlookeng-server
   namespace: openlookeng
 spec:
@@ -85,3 +47,41 @@ metadata:
           - name: NODE_ENVIRONMENT
             value: openeulersummit
     restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openlookeng-frontend
+  namespace: openlookeng
+spec:
+  selector:
+    app: openlookeng-frontend
+  type: NodePort
+  ports:
+  - port: 8081
+    targetPort: 8081
+    name: airpal
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: openlookeng-frontend
+  namespace: openlookeng
+  labels:
+    app: openlookeng-frontend
+spec:
+  nodeSelector:
+    kubernetes.io/arch: amd64
+  containers:
+    - name: openlookeng-frontend
+      image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
+      imagePullPolicy: Always
+      ports:
+      - containerPort: 8081
+        name: airpal
+      env:
+        - name: MYSQL_HOST
+          value: "114.119.184.236"
+        - name: PRESTO_SERVER_URI
+          value: "http://119.8.114.27:8090"
+  restartPolicy: Always
