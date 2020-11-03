@@ -83,5 +83,5 @@ spec:
         - name: MYSQL_HOST
           value: "114.119.184.236"
         - name: PRESTO_SERVER_URI
-          value: openlookeng-server.openlookeng.svc.cluster.local
+          value: http://openlookeng-server.openlookeng.svc.cluster.local:8080
   restartPolicy: Always
