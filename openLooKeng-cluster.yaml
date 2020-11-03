@@ -81,7 +81,7 @@ spec:
         name: airpal
       env:
         - name: MYSQL_HOST
-          value: "114.119.184.236"
+          value: "mariadb-svc.mariadb.svc.cluster.local:3306"
         - name: PRESTO_SERVER_URI
           value: "http://openlookeng-server.openlookeng.svc.cluster.local:8080"
   restartPolicy: Always
