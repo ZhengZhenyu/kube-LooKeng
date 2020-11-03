@@ -41,3 +41,47 @@ spec:
         - name: PRESTO_SERVER_URI
           value: "http://119.8.114.27:8090"
   restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openlookeng-server
+  namespace: openlookeng
+spec:
+  selector:
+    app: openlookeng-server
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: openlookeng
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: openlookeng-server
+  namespace: openlookeng-server
+  labels:
+    app: openlookeng-server
+  spec:
+    nodeSelector:
+      kubernetes.io/arch: arm64
+    containers:
+      - name: openlookeng-server
+        image: ghcr.io/zhengzhenyu/openlookeng-arm:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: openlookeng
+        env:
+          - name: IS_COORDINATOR
+            value: True
+          - name: INCLUDE_COORDINATOR
+            value: True
+          - name: HTTP_PORT
+            value: 8080
+          - name: DISCOVERY_URI
+            value: http://localhost:8080
+          - name: NODE_ENVIRONMENT
+            value: openeulersummit
+    restartPolicy: Always
