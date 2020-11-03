@@ -14,7 +14,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 # Install Prerequisites and Download Airpal
 RUN apt-get update \
         && apt-get install -y build-essential git gradle python \
-        && git clone https://github.com/airbnb/airpal.git \
+        && git clone https://github.com/ZhengZhenyu/airpal.git \
         && rm -rf /var/lib/apt/lists/*
 
 # Build and Configure AirPal
@@ -23,7 +23,6 @@ RUN apt-get update \
 RUN cd $AIRPAL_HOME \
         && ./gradlew clean shadowJar \
         && cp reference.example.yml reference.yml \
-        && echo "prestoCatalog: system" >> reference.yml \
         && cd -
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
