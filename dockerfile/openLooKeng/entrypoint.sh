@@ -15,4 +15,4 @@ echo "discovery.uri=$DISCOVERY_URI" >> etc/config.properties
 
 echo "node.environment=$NODE_ENVIRONMENT" >> etc/node.properties 
 
-exec "$@" 
+/home/openlkadmin/hetu-server/bin/launcher run
