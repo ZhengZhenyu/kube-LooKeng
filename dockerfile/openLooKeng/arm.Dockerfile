@@ -16,8 +16,8 @@ RUN mkdir -p /opt/openlookeng && chown openlkadmin:openlkadmin /opt/openlookeng
 USER openlkadmin
 WORKDIR /home/openlkadmin
 
-RUN curl -L https://download.openlookeng.io/1.0.1/hetu-server-1.0.1.tar.gz | tar zx
-RUN ln -s hetu-server-1.0.1 hetu-server
+RUN curl -L https://github.com/ZhengZhenyu/hetu-core/releases/download/with_webUI/hetu-server-1.0.0-SNAPSHOT.tar.gz | tar zx
+RUN ln -s hetu-server-1.0.0-SNAPSHOT/ hetu-server
 
 COPY --chown=openlkadmin:openlkadmin entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
