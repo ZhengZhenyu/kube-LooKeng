@@ -5,6 +5,18 @@ metadata:
   name: openlookeng
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openlookeng-catalogs
+  namespace: openlookeng
+data:
+  mysql.properties: |
+    connector.name=mysql
+    connection-url=mariadb-svc.mariadb.svc.cluster.local:3306
+    connection-user=openeulersummit
+    connection-password=vlTrlL90k
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: openlookeng-server
@@ -35,6 +47,10 @@ spec:
       ports:
       - containerPort: 8080
         name: openlookeng
+      volumeMounts:
+        - name: mysql-connector
+          mountPath: /home/openlkadmin/hetu-server/catalog/mysql.properties
+          subPath: mysql.properties
       env:
         - name: IS_COORDINATOR
           value: "True"
@@ -46,4 +62,11 @@ spec:
           value: "http://localhost:8080"
         - name: NODE_ENVIRONMENT
           value: "openeulersummit"
+  volumes:
+    -name: mysql-config
+      configMap:
+        name: openlookeng-catalogs
+        items:
+          - key: mysql.properties
+            path: mysql.properties
   restartPolicy: Always
