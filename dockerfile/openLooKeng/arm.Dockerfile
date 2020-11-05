@@ -22,7 +22,7 @@ RUN ln -s hetu-server-1.0.0-SNAPSHOT/ hetu-server
 COPY --chown=openlkadmin:openlkadmin entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-WORKDIR /home/openlkadmin/hetu-server-1.0.1
+WORKDIR /home/openlkadmin/hetu-server
 RUN mkdir -p etc etc/catalog
 COPY --chown=openlkadmin:openlkadmin node.properties etc/node.properties
 COPY --chown=openlkadmin:openlkadmin config.properties etc/config.properties
