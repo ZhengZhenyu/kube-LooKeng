@@ -30,7 +30,7 @@ spec:
     kubernetes.io/arch: arm64
   containers:
     - name: openlookeng-server
-      image: ghcr.io/zhengzhenyu/openlookeng-arm:latest
+      image: ghcr.io/zhengzhenyu/openlookeng-arm:with_ui
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
@@ -46,50 +46,4 @@ spec:
           value: "http://localhost:8080"
         - name: NODE_ENVIRONMENT
           value: "openeulersummit"
-  restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: openlookeng-frontend
-  namespace: openlookeng
-spec:
-  selector:
-    app: openlookeng-frontend
-  type: NodePort
-  ports:
-  - port: 8081
-    targetPort: 8081
-    name: airpal
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: openlookeng-frontend
-  namespace: openlookeng
-  labels:
-    app: openlookeng-frontend
-spec:
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  containers:
-    - name: openlookeng-frontend
-      image: ghcr.io/zhengzhenyu/airpal-ubuntu:latest
-      imagePullPolicy: Always
-      ports:
-      - containerPort: 8081
-        name: airpal
-      env:
-        - name: USER_TIMEZONE
-          value: "HKT"
-        - name: MYSQL_HOST
-          value: "mariadb-svc.mariadb.svc.cluster.local"
-        - name: MYSQL_USER
-          value: "openeulersummit"
-        - name: MYSQL_DB
-          value: "airpal"
-        - name: MYSQL_PASSWD
-          value: "vlTrlL90k"
-        - name: PRESTO_SERVER_URI
-          value: "http://openlookeng-server.openlookeng.svc.cluster.local:8080"
   restartPolicy: Always
