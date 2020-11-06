@@ -91,7 +91,7 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
-    name: openlookeng-worker-arm
+    name: lk-worker-arm
 ---
 apiVersion: v1
 kind: Pod
@@ -109,7 +109,7 @@ spec:
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
-        name: openlookeng-worker-arm
+        name: lk-worker-arm
       volumeMounts:
         - name: gauss-config
           mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
@@ -145,7 +145,7 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
-    name: openlookeng-worker-x86
+    name: lk-worker-x86
 ---
 apiVersion: v1
 kind: Pod
@@ -163,7 +163,7 @@ spec:
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
-        name: openlookeng-worker-x86
+        name: lk-worker-x86
       volumeMounts:
         - name: gauss-config
           mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
