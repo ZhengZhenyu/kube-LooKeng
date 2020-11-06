@@ -87,9 +87,11 @@ metadata:
 spec:
   selector:
     app: openlookeng-worker-arm
+  type: NodePort
   ports:
-  - name: port-worker-arm
-    port: 8080
+  - port: 8080
+    targetPort: 8080
+    name: openlookeng-worker-arm
 ---
 apiVersion: v1
 kind: Pod
