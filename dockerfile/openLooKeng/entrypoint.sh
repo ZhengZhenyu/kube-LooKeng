@@ -9,7 +9,7 @@ else
 fi
 
 INCLUDE_COORDINATOR={INCLUDE_COORDINATOR:-""}
-if [ "$INCLUDE_COORDINATOR" != "" ]; then
+if [ "$INCLUDE_COORDINATOR" == "true" ]; then
     echo "node-scheduler.include-coordinator=true" >> etc/config.properties
 fi
 
