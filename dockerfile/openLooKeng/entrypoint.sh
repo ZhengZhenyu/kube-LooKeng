@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 IS_COORDINATOR=${IS_COORDINATOR:-""}
-if [ "$IS_COORDINATOR" != "true" ]; then
+if [ "$IS_COORDINATOR" == "true" ]; then
     echo "coordinator=true" >> etc/config.properties
 else
     echo "coordinator=false" >> etc/config.properties
