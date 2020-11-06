@@ -48,8 +48,8 @@ spec:
       - containerPort: 8080
         name: openlookeng
       volumeMounts:
-        - name: mysql-connector
-          mountPath: /home/openlkadmin/hetu-server/catalog/mysql.properties
+        - name: mysql-config
+          mountPath: /home/openlkadmin/hetu-server/etc/catalog/mysql.properties
           subPath: mysql.properties
       env:
         - name: IS_COORDINATOR
@@ -63,10 +63,7 @@ spec:
         - name: NODE_ENVIRONMENT
           value: "openeulersummit"
   volumes:
-    -name: mysql-config
+    - name: mysql-config
       configMap:
         name: openlookeng-catalogs
-        items:
-          - key: mysql.properties
-            path: mysql.properties
   restartPolicy: Always
