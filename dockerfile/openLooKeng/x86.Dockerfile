@@ -29,8 +29,6 @@ COPY --chown=openlkadmin:openlkadmin config.properties etc/config.properties
 COPY --chown=openlkadmin:openlkadmin jvm.config etc/jvm.config
 COPY --chown=openlkadmin:openlkadmin log.properties etc/log.properties
 
-RUN echo "node.id=$(cat /proc/sys/kernel/random/uuid)" >> etc/node.properties
-
 ENV TZ Asia/Hong_Kong
 
 ENTRYPOINT ["/entrypoint.sh"]
