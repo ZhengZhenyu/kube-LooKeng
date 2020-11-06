@@ -10,9 +10,14 @@ metadata:
   name: openlookeng-catalogs
   namespace: openlookeng
 data:
-  mysql.properties: |
+  opengauss.properties: |
+    connector.name=postgresql
+    connection-url=jdbc:postgresql://opengauss.db-opengauss-singleton.svc.cluster.local:5432/postgres
+    connection-user=gaussdb
+    connection-password=rxcwcbwi43SXwqr@
+  mariadb.properties: |
     connector.name=mysql
-    connection-url=mariadb-svc.mariadb.svc.cluster.local:3306
+    connection-url=jdbc:mysql://mariadb-svc.mariadb.svc.cluster.local:3306
     connection-user=openeulersummit
     connection-password=vlTrlL90k
 ---
@@ -48,9 +53,12 @@ spec:
       - containerPort: 8080
         name: openlookeng
       volumeMounts:
-        - name: mysql-config
-          mountPath: /home/openlkadmin/hetu-server/etc/catalog/mysql.properties
-          subPath: mysql.properties
+        - name: gauss-config
+          mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
+          subPath: opengauss.properties
+        - name: mariadb-config
+          mountPath: /home/openlkadmin/hetu-server/etc/catalog/mariadb.properties
+          subPath: mariadb.properties
       env:
         - name: IS_COORDINATOR
           value: "True"
@@ -63,7 +71,10 @@ spec:
         - name: NODE_ENVIRONMENT
           value: "openeulersummit"
   volumes:
-    - name: mysql-config
+    - name: gauss-config
+      configMap:
+        name: openlookeng-catalogs
+    - name: mariadb-config
       configMap:
         name: openlookeng-catalogs
   restartPolicy: Always
