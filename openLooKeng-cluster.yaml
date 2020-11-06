@@ -165,9 +165,9 @@ spec:
       - containerPort: 8080
         name: lk-worker-x86
       volumeMounts:
-        - name: gauss-config
-          mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
-          subPath: opengauss.properties
+   #     - name: gauss-config
+   #       mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
+   #       subPath: opengauss.properties
         - name: mariadb-config
           mountPath: /home/openlkadmin/hetu-server/etc/catalog/mariadb.properties
           subPath: mariadb.properties
@@ -179,9 +179,9 @@ spec:
         - name: NODE_ENVIRONMENT
           value: "openeulersummit"
   volumes:
-    - name: gauss-config
-      configMap:
-        name: openlookeng-catalogs
+  #  - name: gauss-config
+  #    configMap:
+  #      name: openlookeng-catalogs
     - name: mariadb-config
       configMap:
         name: openlookeng-catalogs
