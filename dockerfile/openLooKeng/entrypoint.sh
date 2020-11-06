@@ -16,6 +16,7 @@ fi
 echo "http-server.http.port=$HTTP_PORT" >> etc/config.properties
 echo "discovery.uri=$DISCOVERY_URI" >> etc/config.properties
 
-echo "node.environment=$NODE_ENVIRONMENT" >> etc/node.properties 
+echo "node.environment=$NODE_ENVIRONMENT" >> etc/node.properties
+echo "node.id=$(cat /proc/sys/kernel/random/uuid)" >> etc/node.properties
 
 /home/openlkadmin/hetu-server/bin/launcher run
