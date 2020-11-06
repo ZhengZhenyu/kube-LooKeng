@@ -5,7 +5,7 @@ LABEL maintainer="zheng.zhenyu@outlook.com"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN yum update -y \
-    && yum install -y python2 java-1.8.0-openjdk-devel tar shadow-utils
+    && yum install -y python2 java-1.8.0-openjdk-devel tar shadow-utils sudo
 
 RUN groupadd openlkadmin
 RUN useradd -m -d /home/openlkadmin -s /bin/bash openlkadmin -g openlkadmin
