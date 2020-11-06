@@ -109,7 +109,7 @@ spec:
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
-        name: openlookeng
+        name: openlookeng-worker-arm
       volumeMounts:
         - name: gauss-config
           mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
@@ -132,4 +132,57 @@ spec:
       configMap:
         name: openlookeng-catalogs
   restartPolicy: Always
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openlookeng-worker-x86
+  namespace: openlookeng
+spec:
+  selector:
+    app: openlookeng-worker-x86
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: openlookeng-worker-x86
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: openlookeng-worker-x86
+  namespace: openlookeng
+  labels:
+    app: openlookeng-worker-x86
+spec:
+  nodeSelector:
+    kubernetes.io/arch: amd64
+  containers:
+    - name: openlookeng-worker-x86
+      image: ghcr.io/zhengzhenyu/openlookeng-x86:with_ui
+      imagePullPolicy: Always
+      ports:
+      - containerPort: 8080
+        name: openlookeng-worker-x86
+      volumeMounts:
+        - name: gauss-config
+          mountPath: /home/openlkadmin/hetu-server/etc/catalog/opengauss.properties
+          subPath: opengauss.properties
+        - name: mariadb-config
+          mountPath: /home/openlkadmin/hetu-server/etc/catalog/mariadb.properties
+          subPath: mariadb.properties
+      env:
+        - name: HTTP_PORT
+          value: "8080"
+        - name: DISCOVERY_URI
+          value: "http://openlookeng-server.openlookeng.svc.cluster.local:8080"
+        - name: NODE_ENVIRONMENT
+          value: "openeulersummit"
+  volumes:
+    - name: gauss-config
+      configMap:
+        name: openlookeng-catalogs
+    - name: mariadb-config
+      configMap:
+        name: openlookeng-catalogs
+  restartPolicy: Always
