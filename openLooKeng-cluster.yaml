@@ -24,11 +24,11 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlK-server
+  name: openlk-svc
   namespace: openlookeng
 spec:
   selector:
-    app: openlK-server
+    app: openlk-svc
   type: NodePort
   ports:
   - port: 8080
@@ -38,15 +38,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: openlK-server
+  name: openlk-svc
   namespace: openlookeng
   labels:
-    app: openlK-server
+    app: openlk-svc
 spec:
   nodeSelector:
     kubernetes.io/arch: arm64
   containers:
-    - name: openlK-server
+    - name: openlk-svc
       image: ghcr.io/zhengzhenyu/openlookeng-arm:with_ui
       imagePullPolicy: Always
       ports:
@@ -82,11 +82,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlK-w-arm
+  name: openlk-worker-arm
   namespace: openlookeng
 spec:
   selector:
-    app: openlK-w-arm
+    app: openlk-worker-arm
   type: NodePort
   ports:
   - port: 8080
@@ -96,15 +96,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: openlK-w-arm
+  name: openlk-worker-arm
   namespace: openlookeng
   labels:
-    app: openlK-w-arm
+    app: openlk-worker-arm
 spec:
   nodeSelector:
     kubernetes.io/arch: arm64
   containers:
-    - name: openlK-w-arm
+    - name: openlk-worker-arm
       image: ghcr.io/zhengzhenyu/openlookeng-arm:with_ui
       imagePullPolicy: Always
       ports:
@@ -136,11 +136,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlk-w-x86
+  name: openlk-worker-x86
   namespace: openlookeng
 spec:
   selector:
-    app: openlk-w-x86
+    app: openlk-worker-x86
   type: NodePort
   ports:
   - port: 8080
@@ -150,15 +150,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: openlk-w-x86
+  name: openlk-worker-x86
   namespace: openlookeng
   labels:
-    app: openlk-w-x86
+    app: openlk-worker-x86
 spec:
   nodeSelector:
     kubernetes.io/arch: amd64
   containers:
-    - name: openlk-w-x86
+    - name: openlk-worker-x86
       image: ghcr.io/zhengzhenyu/openlookeng-x86:with_ui
       imagePullPolicy: Always
       ports:
