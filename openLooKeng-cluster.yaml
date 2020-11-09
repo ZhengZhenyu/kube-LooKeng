@@ -24,11 +24,11 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlK-svc
+  name: openlK-server
   namespace: openlookeng
 spec:
   selector:
-    app: openlK-svc
+    app: openlK-server
   type: NodePort
   ports:
   - port: 8080
@@ -38,15 +38,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: openlK-svc
+  name: openlK-server
   namespace: openlookeng
   labels:
-    app: openlK-svc
+    app: openlK-server
 spec:
   nodeSelector:
     kubernetes.io/arch: arm64
   containers:
-    - name: openlK-svc
+    - name: openlK-server
       image: ghcr.io/zhengzhenyu/openlookeng-arm:with_ui
       imagePullPolicy: Always
       ports:
