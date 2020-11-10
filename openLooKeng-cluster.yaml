@@ -87,10 +87,9 @@ metadata:
 spec:
   selector:
     app: openlk-worker-arm
-  type: NodePort
+  type: ClusterIP
   ports:
   - port: 8080
-    targetPort: 8080
     name: lk-worker-arm
 ---
 apiVersion: v1
@@ -141,10 +140,9 @@ metadata:
 spec:
   selector:
     app: openlk-worker-x86
-  type: NodePort
+  type: ClusterIP
   ports:
   - port: 8080
-    targetPort: 8080
     name: lk-worker-x86
 ---
 apiVersion: v1
