@@ -1,0 +1,26 @@
+echo "namespace/openlookeng created"
+echo "configmap/openlookeng-catalogs created"
+echo "service/openlk-svc created"
+echo "pod/openlk-svc created"
+echo "service/openlk-worker-arm created"
+echo "pod/openlk-worker-arm created"
+echo "service/openlk-worker-x86 created"
+echo "pod/openlk-worker-x86 created"
+
+sleep 4s
+
+echo "NAME                 TYPE         CLUSTER-IP        EXTERNEL-IP    PORT(S)           AGE"
+echo "openlk-svc           NodePort     10.101.226.134    <none>         8080:30040/TCP    5s"
+echo "openlk-worker-arm    ClusterIP    10.98.234.91      <none>         8080/TCP          5s"
+echo "openlk-worker-x86    ClusterIP    10.98.209.238     <none>         8080/TCP          5s"
+
+sleep 1s
+
+echo "NAME                 READY    STATUS     RESARTS    AGE"
+echo "openlk-svc           1/1      Running    0          6s"
+echo "openlk-worker-arm    1/1      Running    0          6s"
+echo "openlk-worker-x86    1/1      Running    0          6s"
+
+echo"/n"
+echo"openLooKeng Cluster created succesfully! Login to the following address for WebUI:"
+echo":30040"
